@@ -17,5 +17,6 @@ BernsteinBasisPolynomial::BernsteinBasisPolynomial(unsigned int aV,
 double BernsteinBasisPolynomial::operator()(double aX) const {
     size_t v = this->fFactor.getK(), n = this->fFactor.getN();
 
+    // avoid numbers getting too small by putting a big number inbetween
     return pow(aX, v) * this->fFactor() * pow(1 - aX, n - v);
 }
