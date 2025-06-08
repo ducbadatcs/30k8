@@ -63,7 +63,7 @@ std::ostream &operator<<(std::ostream &aOStream, const Polynomial &aObject) {
 
     for (int i = aObject.fDegree; i >= 0; i--) {
         // I love floats
-        if (std::abs(aObject.fCoeffs[i]) > 1e-9) {
+        if (std::abs(aObject.fCoeffs[i]) > epsilon) {
             aOStream << aObject.fCoeffs[i] << "x^" << i;
             if (i > minimal_mononomial_degree)
                 aOStream << " + ";
