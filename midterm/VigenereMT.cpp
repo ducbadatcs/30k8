@@ -54,31 +54,37 @@ void Vigenere::reset() {
 // and if we decode a char $c$ with key $b$, we return (c - b - 1) % 26
 
 char Vigenere::encode(char aCharacter) {
-    // to encode a char
-    // uh
-
     if (!std::isalpha(aCharacter)) {
         return aCharacter;
     }
 
-    int D = std::toupper(aCharacter) - 'A', K = *this->fKeywordProvider - 'A';
-    this->fKeywordProvider << static_cast<char>('A' + K);
-    // std::cout << char(D) << ' ' << char(K) << ' ';
+    int D = std::toupper(aCharacter) - 'A';
+    int K = *this->fKeywordProvider - 'A';
+
+    // Advance keyword provider for alphabetic characters
+    this->fKeywordProvider << aCharacter;
+
+    // Standard Vigenere: (plaintext + key) % 26
     int S = (D + K + 1) % 26;
-    // std::cout << S << std::endl;
-    // std::cout << (char) D << ' ' << (char) K << '\n';
+
     return (std::isupper(aCharacter) ? 'A' : 'a') + S;
 }
 
 char Vigenere::decode(char aCharacter) {
-
     if (!std::isalpha(aCharacter)) {
         return aCharacter;
     }
 
-    int S = std::toupper(aCharacter) - 'A', K = *this->fKeywordProvider - 'A';
+    int S = std::toupper(aCharacter) - 'A';
+    int K = *this->fKeywordProvider - 'A';
 
-    this->fKeywordProvider << static_cast<char>('A' + K);
-    int D = ((S - K - 1) + 26) % 26;
-    return (std::isupper(aCharacter) ? 'A' : 'a') + (D % 26);
+    // Standard Vigenere: (ciphertext - key + 26) % 26
+    int D = (S - K - 1 + 26) % 26;
+
+    char result = (std::isupper(aCharacter) ? 'A' : 'a') + D;
+
+    // Advance keyword provider with the decoded character
+    this->fKeywordProvider << result;
+
+    return result;
 }

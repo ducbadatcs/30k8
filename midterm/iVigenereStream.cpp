@@ -10,7 +10,9 @@ iVigenereStream::iVigenereStream(Cipher aCipher, const std::string &aKeyword,
     if (aFileName != nullptr) {
         // open the stream, well I'd cba this for later
         this->open(aFileName);
+        this->seekstart();
     }
+    this->fCipherProvider.reset();
 }
 
 iVigenereStream::~iVigenereStream() {
@@ -24,7 +26,13 @@ void iVigenereStream::open(const char *aFileName) {
 
 void iVigenereStream::close() { this->fIStream.close(); }
 
-void iVigenereStream::reset() { this->seekstart(); }
+void iVigenereStream::reset() {
+    // this->fIStream.open()
+
+    this->fCipherProvider.reset();
+
+    this->seekstart();
+}
 
 bool iVigenereStream::good() const { return this->fIStream.good(); }
 
@@ -33,10 +41,11 @@ bool iVigenereStream::is_open() const { return this->fIStream.is_open(); }
 bool iVigenereStream::eof() const { return this->fIStream.eof(); }
 
 iVigenereStream &iVigenereStream::operator>>(char &aCharacter) {
-
-    char getch = this->fIStream.get();
-    // Apply cipher only if character is alphabetic
-    aCharacter = this->fCipher(this->fCipherProvider, getch);
-
+    if (!this->eof()) {
+        char getch = this->fIStream.get();
+        if (this->fIStream.good()) {
+            aCharacter = this->fCipher(this->fCipherProvider, getch);
+        }
+    }
     return *this;
 }

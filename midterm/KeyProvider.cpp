@@ -34,7 +34,7 @@ char KeyProvider::operator*() const {
 
 KeyProvider &KeyProvider::operator<<(char aKeyCharacter) {
     // replace current char
-    // this->fKeyword[this->fIndex % this->fSize] = toupper(aKeyCharacter);
+    this->fKeyword[this->fIndex % this->fSize] = toupper(aKeyCharacter);
 
     // advance to next
 
