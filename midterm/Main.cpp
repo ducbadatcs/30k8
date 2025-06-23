@@ -7,9 +7,9 @@
 
 using namespace std;
 
-#define P1
-#define P2
-// #define P3
+// #define P1
+// #define P2
+#define P3
 // #define P4
 
 #ifdef P1
@@ -50,6 +50,7 @@ int runP1(string argv[2]) {
 #include "Vigenere.h"
 
 int runP2(string argv[2]) {
+    // cout << "something goes here";
     string lMessage = argv[1];
     Vigenere lSrambler(argv[0]);
 

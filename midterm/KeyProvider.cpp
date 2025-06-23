@@ -22,9 +22,7 @@ void KeyProvider::initialize(const std::string &aKeyword) {
     this->fKeyword = new char[this->fSize];
     for (size_t i = 0; i < this->fSize; i++) {
         //  a little test won't hurt
-        if (std::isalpha(aKeyword[i])) {
-            this->fKeyword[i] = toupper(aKeyword[i]);
-        }
+        this->fKeyword[i] = toupper(aKeyword[i]);
     }
     this->fIndex = 0;
 }
@@ -36,7 +34,7 @@ char KeyProvider::operator*() const {
 
 KeyProvider &KeyProvider::operator<<(char aKeyCharacter) {
     // replace current char
-    this->fKeyword[this->fIndex % this->fSize] = toupper(aKeyCharacter);
+    // this->fKeyword[this->fIndex % this->fSize] = toupper(aKeyCharacter);
 
     // advance to next
 
