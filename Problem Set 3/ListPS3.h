@@ -147,7 +147,7 @@ template <typename T> class List {
     // list indexer
     const T &operator[](size_t aIndex) const {
         if (aIndex >= this->fCount) {
-            throw std::out_of_range("aIndex out of range");
+            throw std::out_of_range("Index out of bounds");
         }
         auto it = this->begin();
         for (size_t i = 0; i < aIndex; i++) {
