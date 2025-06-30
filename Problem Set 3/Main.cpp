@@ -9,12 +9,12 @@
 
 using namespace std;
 
-#define P0
+// #define P0
 #define P1
-// #define P2
-// #define P3
-// #define P4
-// #define P5
+#define P2
+#define P3
+#define P4
+#define P5
 
 #ifdef P0
 
@@ -44,6 +44,7 @@ void testP1() {
     cout << "Test of problem 1:" << endl;
 
     StringList lList;
+    // cout << "something\n";
 
     if (!lList.empty()) {
         cerr << "Error: Newly created list is not empty." << endl;
@@ -53,6 +54,7 @@ void testP1() {
     lList.push_front(s3);
     lList.push_front(s2);
     lList.push_front(s1);
+    cout << "something\n";
 
     // iterate from the top
     cout << "Top to bottom " << lList.size() << " elements:" << endl;
@@ -166,11 +168,14 @@ void testP4() {
     lList.push_front(s3);
     lList.push_front(s2);
 
+    // cout << "finish created lList\n";
+
     List<string> copy(lList);
 
+    // cout << "uh something\n";
     // iterate from the top
     cout << "A - Top to bottom " << copy.size() << " elements:" << endl;
-
+    // cout << "uh something\n";
     for (const string &element : copy) {
         cout << element << endl;
     }
@@ -207,6 +212,8 @@ void testP5() {
     lList.push_front(string("DDDD"));
     lList.push_front(std::move(s2));
     lList.push_front("BBBB");
+
+    // cout << "we made it here\n";
 
     if (s2.empty()) {
         cout << "Successfully performed move operation." << endl;
