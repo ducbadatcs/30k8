@@ -19,13 +19,12 @@ using namespace std;
 
 #if TEST == 0 || TEST == 1
 
-void testCC()
-{
+void testCC() {
     SimpleString s1;
     s1 + 'A';
     SimpleString s2 = s1;
     s2 + 'B';
-    
+
     cout << "S1: \"" << *s1 << "\"" << endl;
     cout << "S2: \"" << *s2 << "\"" << endl;
 }
@@ -34,15 +33,14 @@ void testCC()
 
 #if TEST == 2 || TEST == 3
 
-void testAO()
-{
+void testAO() {
     SimpleString s1;
     s1 + 'A';
     SimpleString s2 = s1;
     s2 + 'B';
-    
+
     s1 = s2;
-    
+
     cout << "S1: \"" << *s1 << "\"" << endl;
     cout << "S2: \"" << *s2 << "\"" << endl;
 }
@@ -51,17 +49,16 @@ void testAO()
 
 #if TEST == 4
 
-void testMS()
-{
+void testMS() {
     SimpleString s1;
     s1 + 'A';
     SimpleString s2 = s1;
     s2 + 'B';
-    
+
     cout << "S1: \"" << *s1 << "\"" << endl;
     cout << "S2: \"" << *s2 << "\"" << endl;
 
-    SimpleString s3( std::move(s2) );
+    SimpleString s3(std::move(s2));
 
     cout << "S2: \"" << *s2 << "\"" << endl;
     cout << "S3: \"" << *s3 << "\"" << endl;
@@ -76,16 +73,15 @@ void testMS()
 
 #if TEST == 5
 
-void testPA()
-{
-    SimpleString* ps1 = new SimpleString();
+void testPA() {
+    SimpleString *ps1 = new SimpleString();
     (*ps1) + 'A';
-    SimpleString* ps2 = ps1;
+    SimpleString *ps2 = ps1;
     (*ps2) + 'B';
 
     cout << "PS1: \"" << **ps1 << "\"" << endl;
     cout << "PS2: \"" << **ps2 << "\"" << endl;
-    
+
     delete ps1;
     delete ps2;
 }
@@ -94,13 +90,12 @@ void testPA()
 
 #if TEST == 6
 
-void testClone()
-{
-    SimpleString* ps1 = new SimpleString();
+void testClone() {
+    SimpleString *ps1 = new SimpleString();
     (*ps1) + 'A';
-    SimpleString* ps2 = ps1->clone();
+    SimpleString *ps2 = ps1->clone();
     (*ps2) + 'B';
-    
+
     cout << "PS1: \"" << **ps1 << "\"" << endl;
     cout << "PS2: \"" << **ps2 << "\"" << endl;
 
@@ -112,11 +107,10 @@ void testClone()
 
 #if TEST == 7
 
-void testHandle()
-{
-    Handle<SimpleString> hs1( new SimpleString() );
+void testHandle() {
+    Handle<SimpleString> hs1(new SimpleString());
     *hs1 + 'A';
-    Handle<SimpleString> hs2( hs1->clone() );
+    Handle<SimpleString> hs2(hs1->clone());
     *hs2 + 'B';
     Handle<SimpleString> hs3 = hs1;
 
@@ -127,62 +121,61 @@ void testHandle()
 
 #endif
 
-int main()
-{
+int main() {
 #if TEST == 0
-    
+
     cout << "Testing default behavior..." << endl;
     testCC();
-    
+
 #endif
-    
+
 #if TEST == 1
-    
+
     cout << "Testing deep-copy copy constructor..." << endl;
     testCC();
-    
+
 #endif
 
 #if TEST == 2
-    
+
     cout << "Testing default assignment operator..." << endl;
     testAO();
-    
+
 #endif
-    
+
 #if TEST == 3
-    
+
     cout << "Testing deep-copy assignment operator..." << endl;
     testAO();
-    
+
 #endif
-        
+
 #if TEST == 4
-        
+
     cout << "Testing move semantics..." << endl;
     testMS();
-        
+
 #endif
 
 #if TEST == 5
-    
+
     cout << "Testing pointer aliases..." << endl;
     testPA();
-    
+
 #endif
 
 #if TEST == 6
-    
+
     cout << "Testing clone..." << endl;
     testClone();
-    
+
 #endif
 
 #if TEST == 7
-    
+
     cout << "Testing handles..." << endl;
     testHandle();
-    
+
 #endif
 
     return 0;

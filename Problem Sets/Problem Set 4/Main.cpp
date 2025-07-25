@@ -5,9 +5,9 @@
 
 using namespace std;
 
-// #define P1
+#define P1
 #define P2
-// #define P3
+#define P3
 
 #ifdef P1
 
@@ -132,6 +132,7 @@ void testBinarySearchTree() {
 
 #ifdef P3
 
+#include "BinarySearchTree.h"
 #include "BinarySearchTreeIterator.h"
 
 void testIterator() {

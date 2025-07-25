@@ -3,6 +3,7 @@
 
 #pragma once
 
+// #include "BinarySearchTreeIterator.h"
 #include "BinaryTreeNode.h"
 
 #include <stdexcept>
@@ -24,11 +25,8 @@ template <typename T> class BinarySearchTree {
           };
 
     ~BinarySearchTree() {
-        if (!this->fRoot->left->empty()) {
-            delete this->fRoot->left;
-        }
-        if (!this->fRoot->right->empty()) {
-            delete this->fRoot->right;
+        if (!this->fRoot->empty()) {
+            delete this->fRoot;
         }
     };
 
@@ -56,6 +54,6 @@ template <typename T> class BinarySearchTree {
     // Allow iterator to access private member variables
     friend class BinarySearchTreeIterator<T>;
 
-    Iterator begin() const;
-    Iterator end() const;
+    Iterator begin() const { return Iterator(*this).begin(); }
+    Iterator end() const { return Iterator(*this).end(); }
 };

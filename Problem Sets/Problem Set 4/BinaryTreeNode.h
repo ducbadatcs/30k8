@@ -119,10 +119,10 @@ template <typename T> struct BinaryTreeNode {
         } else {
             size_t t = 0;
             if (!this->left->empty()) {
-                t = max(t, this->left->height() + 1);
+                t = std::max(t, this->left->height() + 1);
             }
             if (!this->right->empty()) {
-                t = max(t, this->right->height() + 1);
+                t = std::max(t, this->right->height() + 1);
             }
             return t;
         }
